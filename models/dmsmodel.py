@@ -6,6 +6,7 @@ Base = declarative_base()
 
 class GmRegion(Base):
     __tablename__ = 'gmRegion'
+    __table_args__ = {'schema': 'dbo'}
 
     RECORD_STATUS = Column(CHAR(1, 'SQL_Latin1_General_CP1_CI_AS'), nullable=False, server_default=text("('')"))
     REGIONAL_CODE = Column(String(10, 'SQL_Latin1_General_CP1_CI_AS'), primary_key=True, server_default=text("('')"))
@@ -20,6 +21,7 @@ class GmRegion(Base):
 
 class GmSArea(Base):
     __tablename__ = 'gmSArea'
+    __table_args__ = {'schema': 'dbo'}
 
     SALES_AREA_CODE = Column(String(5, 'SQL_Latin1_General_CP1_CI_AS'), primary_key=True)
     RECORD_STATUS = Column(CHAR(1, 'SQL_Latin1_General_CP1_CI_AS'))
