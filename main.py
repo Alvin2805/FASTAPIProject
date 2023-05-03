@@ -2,7 +2,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 # manual function that created using basic libraries in python
 import utils.AddControllers
-from utils.AddModels import addModels
+#from utils.AddModels import addModels
+from configs.database import Base, engine
+from models import RoleModel,UserModel
+
+RoleModel.Base.metadata.create_all(bind=engine)
+UserModel.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -20,6 +25,6 @@ app.add_middleware(
 )
 
 
-addModels()
+#addModels()
 
 app.include_router(utils.AddControllers.populated_router)

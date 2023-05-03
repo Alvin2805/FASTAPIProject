@@ -1,4 +1,6 @@
-from sqlmodel import Session, column, select
+#from sqlmodel import Session, column, select
+from sqlalchemy.orm import Session
+from sqlalchemy import select, column
 from fastapi.encoders import jsonable_encoder
 from models.UserModel import User
 from payloads.UserPayload import CreateUserRequest

@@ -1,6 +1,10 @@
 
-from sqlmodel import Session, create_engine
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
 from configs.config import Settings
+from sqlalchemy.orm import declarative_base
+
+Base = declarative_base()
 
 check = Settings()
 
