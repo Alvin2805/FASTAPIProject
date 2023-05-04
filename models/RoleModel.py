@@ -13,7 +13,7 @@ class Role(SQLModel, table=True):
 '''
 
 
-from sqlalchemy.orm import Mapped,mapped_column, relationship
+from sqlalchemy.orm import Mapped,mapped_column,relationship
 from configs.database import Base
 
 class Role(Base):
