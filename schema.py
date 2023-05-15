@@ -42,93 +42,92 @@ class UserDetails(BaseModel):
     factor_x:float 
     skill_level_id:int
 
-class UnitInvoice(Base):
-    __tablename__ = "trx_account_receivable"
-    invoice_system_number = Column(Integer, primary_key=True)
-    company_id = Column(Integer,nullable=False)
-    approval_status_id = Column(Integer, nullable=False)
-    invoice_document_number = Column(Integer, nullable=False)
-    account_receivable_invoice_type_id = Column(Integer, nullable=False)
-    invoice_date = Column(DateTime, nullable=False)
-    invoice_due_date = Column(DateTime, nullable=False)
-    remark = Column(String,nullable=False)
-    brand_id = Column(Integer, nullable=False)
-    profit_center_id = Column(Integer, nullable=False)
-    transaction_type_id = Column(Integer, nullable=False)
-    event_id = Column(Integer, nullable=False)
-    event_id = Column(Integer, nullable=False)
-    workorder_transaction_type_id = Column(Integer, nullable=False)
-    customer_type_id = Column(Integer, nullable=False)
-    customer_id = Column(Integer, nullable=False)
-    fund_type_id = Column(Integer, nullable=False)
-    sales_representative_id = Column(Integer, nullable=False)
-    currency_id = Column(Integer, nullable=False)
-    currency_exchange_rate_type = Column(String,nullable=False)
-    currency_exchange_rate_date = Column(DateTime)
-    currency_exchange_rate = Column(Float)
-    tax_exchange_rate_type  = Column(String)
-    tax_exchange_rate_date = Column(DateTime)
-    tax_exchange_rate = Column(Float)
-    leasing_supplier_code = Column(String)
-    purchase_order_system_number = Column(Integer)
-    purchase_order_document_number = Column(String)
-    reference_type = Column(String)
-    reference_system_number = Column(Integer)
-    reference_document_number = Column(String)
-    reference_tnkb = Column(String)
-    reference_insurance_policy_number = Column(String)
-    reference_service_advisor = Column(String)
-    reference_contract_service_code = Column(String)
-    reference_document_date = Column(DateTime)
-    reference_invoice_due_date = Column(DateTime)
-    reference_total = Column(Float)
-    reference_total_base_amount = Column(Float)
-    reference_second_type = Column(String)
-    reference_second_system_number = Column(Integer)
-    reference_second_document_number = Column(String)
-    billable_to_id = Column(Integer, nullable=False)
-    bill_to_customer_type = Column(String)
-    bill_to_customer_code = Column(String)
-    bill_to_title_prefix = Column(String)
-    bill_to_name = Column(String)
-    bill_to_title_suffix = Column(String)
-    bill_to_id_type = Column(String)
-    bill_to_id_number = Column(String)
-    bill_to_address_1 = Column(String) # nama gedung
-    bill_to_address_2 = Column(String) # nama jalan
-    village_id = Column(Integer)
-    district_id = Column(Integer)
-    city_id = Column(Integer)
-    province_id = Column(Integer)
-    city_id = Column(Integer)
-    village_id = Column(Integer)
-    bill_to_phone_number = Column(String)
-    bill_to_fax = Column(String)
-    bill_to_tax_registration_number = Column(String)
-    bill_to_registration_date = Column(DateTime)
-    top_id = Column(Integer)
-    pay_type = Column(String)
-    reference_id = Column(Integer)
-    vat_percent = Column(Float)
-    vat_tax_type = Column(String)
-    vat_service_code = Column(String)
-    pkp_type = Column(String)
-    pkp_number = Column(String)
-    pkp_date = Column(DateTime)
-    tax_name = Column(String)
-    tax_address_1 = Column(String)
-    tax_address_2 = Column(String)
-    village_id = Column(Integer)
-    district_id = Column(Integer)
-    city_id = Column(Integer)
-    province_id = Column(Integer)
-    city_id = Column(Integer)
-    village_id = Column(Integer)
-    tax_invoice_system_number = Column(Integer)
-    tax_invoice_document_number = Column(String)
-    tax_invoice_date = Column(DateTime)
-    tax_invoice_id = Column(Integer)
-    reference_tax_invoice_system_number = Column(Integer)
-    reference_tax_invoice_document_number = Column(String)
-    reference_tax_invoice_date = Column(DateTime)
-    invoice_payable_system_no = Column(Integer)
+class UnitInvoice(BaseModel):
+    invoice_system_numbe:int
+    company_id:int
+    approval_status_id:int
+    invoice_document_number:int
+    account_receivable_invoice_type_id:int
+    invoice_date:datetime
+    invoice_due_date:datetime
+    remark:str
+    brand_id:int
+    profit_center_id:int
+    transaction_type_id:int
+    event_id:int
+    event_id:int
+    workorder_transaction_type_id:int
+    customer_type_id:int
+    customer_id:int
+    fund_type_id:int
+    sales_representative_id:int
+    currency_id:int
+    currency_exchange_rate_type:str
+    currency_exchange_rate_date:datetime
+    currency_exchange_rate:float
+    tax_exchange_rate_type:str
+    tax_exchange_rate_date:datetime
+    tax_exchange_rate:float
+    leasing_supplier_code:str
+    purchase_order_system_number:str
+    purchase_order_document_number:str
+    reference_type:str
+    reference_system_number:int
+    reference_document_number:str
+    reference_tnkb:str
+    reference_insurance_policy_number:str
+    reference_service_advisor:str
+    reference_contract_service_code:str
+    reference_document_date:datetime
+    reference_invoice_due_date:datetime
+    reference_total:float
+    reference_total_base_amount:float
+    reference_second_type:str
+    reference_second_system_number:int
+    reference_second_document_number:str
+    billable_to_id:int
+    bill_to_customer_type:str
+    bill_to_customer_code:str
+    bill_to_title_prefix:str
+    bill_to_name:str
+    bill_to_title_suffix:str
+    bill_to_id_type:str
+    bill_to_id_number:str
+    bill_to_address_1:str # nama gedung
+    bill_to_address_2:str # nama jalan
+    village_id:int
+    district_id:int
+    city_id:int
+    province_id:int
+    city_id:int
+    village_id:int
+    bill_to_phone_number:str
+    bill_to_fax:str
+    bill_to_tax_registration_number:str
+    bill_to_registration_date:str
+    top_id:int
+    pay_type:str
+    reference_id:int
+    vat_percent:float
+    vat_tax_type:str
+    vat_service_code:str
+    pkp_type:str
+    pkp_number:str
+    pkp_date:datetime 
+    tax_name:str
+    tax_address_1:str
+    tax_address_2:str
+    village_id:int
+    district_id:int
+    city_id:int
+    province_id:int 
+    city_id:int
+    village_id:int
+    tax_invoice_system_number:int
+    tax_invoice_document_number:str
+    tax_invoice_date:datetime
+    tax_invoice_id:int
+    reference_tax_invoice_system_number:int
+    reference_tax_invoice_document_number:str
+    reference_tax_invoice_date:datetime
+    invoice_payable_system_no:int

@@ -1,4 +1,4 @@
-from sqlalchemy import String,Column,Float,Integer, Boolean, DateTime
+from sqlalchemy import String,Column,Float,Integer, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from config import Base
 
@@ -11,10 +11,49 @@ class MtrAddress(Base):
     address_street = Column(String(100),nullable=False)
     address_type = Column(String(5),nullable=True,default="")
 
+    users = relationship("UserDetails",back_populates="addresses")
+
+class MtrCity(Base):
+    __tablename__ = "mtr_city"
+    is_active = Column(Boolean,nullable=False)
+    city_id = Column(Integer, primary_key=True,autoincrement=True)
+    city_name = Column(String,nullable=False)
+    city_phone = Column(String,nullable=False)
+    
+    unitinvoices4 = relationship("UnitInvoice",back_populates="users_city")
+
+class MtrProvince(Base):
+    __tablename__ = "mtr_province"
+    is_active = Column(Boolean,nullable=False)
+    province_id = Column(Integer,primary_key=True,autoincrement=True)
+    province_code = Column(String, nullable=False)
+    province_name = Column(String, nullable=False)
+
+    unitinvoices1 = relationship("UnitInvoice",back_populates="users_province")
+
+class MtrVillage(Base):
+    __tablename__ = "mtr_village"
+    is_active = Column(Boolean,nullable=False)
+    village_id = Column(Integer,primary_key=True,autoincrement=True)
+    village_code = Column(String,nullable=False)
+    village_zip_code = Column(Integer, nullable=False)
+    village_name = Column(String, nullable=False)
+
+    unitinvoices2 = relationship("UnitInvoice",back_populates="users_village")
+
+class MtrDistrict(Base):
+    __tablename__ = "mtr_district"
+    is_active = Column(Boolean,nullable=False)
+    district_id = Column(Integer, primary_key=True, autoincrement=True)
+    district_code = Column(String, nullable=False)
+    district_name = Column(String, nullable=False)
+
+    unitinvoices3 = relationship("UnitInvoice",back_populates="users_district")
+
 class UserDetails(Base):
     __tablename__ = "mtr_user_details"
-    is_active = Column(bool,nullable=False)
-    user_employee_id = Column(int,primary_key=True)
+    is_active = Column(Boolean,nullable=False)
+    user_employee_id = Column(Integer,primary_key=True,autoincrement=True)
     user_id = Column(Integer, nullable=False)
     employee_name = Column(String,nullable=False)
     employee_nickname = Column(String,nullable=False)
@@ -27,7 +66,7 @@ class UserDetails(Base):
     cost_center_id = Column(Integer,nullable=False)
     profit_center_id = Column(Integer,nullable=False)
     user_bank_account_id = Column(Integer,nullable=False)
-    address_id = Column(Integer,nullable=False)
+    address_id = Column(Integer,ForeignKey("mtr_address.address_id"))
     office_phone_no = Column(String,nullable=False)
     home_phone_no = Column(String, nullable=False)
     mobile_phone = Column(String, nullable=False)
@@ -45,9 +84,11 @@ class UserDetails(Base):
     factor_x = Column(Float,nullable=False)
     skill_level_id = Column(Integer, nullable=False)
 
+    addresses = relationship("MtrAddress", back_populates="users")
+
 class UnitInvoice(Base):
-    __tablename__ = "trx_account_receivable"
-    invoice_system_number = Column(Integer, primary_key=True)
+    __tablename__ = "unit_invoice"
+    invoice_system_number = Column(Integer, primary_key=True,autoincrement=True)
     company_id = Column(Integer,nullable=False)
     approval_status_id = Column(Integer, nullable=False)
     invoice_document_number = Column(Integer, nullable=False)
@@ -99,10 +140,10 @@ class UnitInvoice(Base):
     bill_to_id_number = Column(String)
     bill_to_address_1 = Column(String) # nama gedung
     bill_to_address_2 = Column(String) # nama jalan
-    village_id = Column(Integer)
-    district_id = Column(Integer)
-    city_id = Column(Integer)
-    province_id = Column(Integer)
+    village_id = Column(Integer, ForeignKey("mtr_village.village_id")) # mtr_village
+    district_id = Column(Integer, ForeignKey("mtr_district.district_id")) # mtr_district
+    city_id = Column(Integer, ForeignKey("mtr_city.city_id")) # mtr_city
+    province_id = Column(Integer, ForeignKey("mtr_province.province_id")) # mtr_province
     city_id = Column(Integer)
     village_id = Column(Integer)
     bill_to_phone_number = Column(String)
@@ -135,3 +176,8 @@ class UnitInvoice(Base):
     reference_tax_invoice_document_number = Column(String)
     reference_tax_invoice_date = Column(DateTime)
     invoice_payable_system_no = Column(Integer)
+
+    users_province = relationship("MtrProvince",back_populates="unitinvoices1")
+    users_village = relationship("MtrVillage",back_populates="unitinvoices2")
+    users_district = relationship("MtrDistrict",back_populates="unitinvoices3")
+    users_city = relationship("MtrCity",back_populates="unitinvoices4")
