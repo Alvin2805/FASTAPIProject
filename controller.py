@@ -108,27 +108,24 @@ async def post_invoice(req_data:UnitInvoiceRequest,db:Session=Depends(get_db)):
     #get the adddress based on user id
     usr = get_users_by_id(inp_data.company_id,db)
     address = get_address_by_id(usr.address_id,db)
-
-
-    inp_data.bill_to_address_1 = address.address_street
-    inp_data.bill_to_address_2 = address.address_type
+    
+    inp_data.bill_to_address_1 = req_data.bill_to_address_1
+    inp_data.bill_to_address_2 = req_data.bill_to_address_2
     inp_data.village_id = req_data.village_id
     inp_data.district_id =  req_data.district_id
     inp_data.city_id = req_data.city_id
     inp_data.province_id = req_data.province_id
 
+    if req_data.bill_to_address_1 != address.address_street or req_data.bill_to_address_2 != address.address_type:
+        new_data = MtrAddress()
+        new_data.address_street = inp_data.bill_to_address_1
+        new_data.address_type = inp_data.bill_to_address_2
+        updated_id = post_address(new_data,db)
+        update_user_address(inp_data.company_id,updated_id,db)
+
     db.add(inp_data)
     db.commit()
     db.refresh(inp_data)
-
-    if inp_data.bill_to_address_1 != address.address_street or inp_data.bill_to_address_2 != address.address_type:
-        print("need update the address and user address id")
-        #new_data = MtrAddress()
-        #new_data.address_street = inp_data.bill_to_address_1
-        #ew_data.address_type = inp_data.bill_to_address_2
-        #updated_id = post_address(new_data)
-        #update_user_address(inp_data.company_id,updated_id,db)
-
 
     return inp_data
 
@@ -173,6 +170,14 @@ async def get_invoice(db:Session=Depends(get_db)):
     get_invoice = select(UnitInvoice)
     results = db.scalars(get_invoice).all()
     return results
+
+@router.put("/user")
+async def cobaupdate(id:int,new_data:int,db:Session=Depends(get_db)):
+    get_user = get_users_by_id(id,db)
+    get_user.address_id = new_data
+    db.commit()
+    db.refresh(get_user)
+    return get_user
 
 def get_users_by_id(id:int,db:Session):
     user_by_id = select(UserDetails).where(UserDetails.user_employee_id==id).order_by(UserDetails.user_employee_id.desc())
