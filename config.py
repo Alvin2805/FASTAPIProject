@@ -5,8 +5,8 @@ from sqlalchemy.orm import sessionmaker
 server = "ISIJKTMTMISN109"
 database = "testingsales"
 
-#database_url = f"mssql+pymssql://{param.db_user}:{param.db_password}@{param.db_server}:{param.db_port}/{param.db_name}"
-database_url = 'mssql+pyodbc://' + server + '/' + database + '?trusted_connection=yes&driver=ODBC+Driver+17+for+SQL+Server'
+database_url = f"postgresql://nomad2805:Zhiff%40hmi3310@localhost:5432/mytesting"
+#database_url = 'mssql+pyodbc://' + server + '/' + database + '?trusted_connection=yes&driver=ODBC+Driver+17+for+SQL+Server'
 
 engine = create_engine(database_url)
 

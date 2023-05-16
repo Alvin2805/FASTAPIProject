@@ -9,7 +9,55 @@ class MtrAddressSchema(BaseModel):
     address_street:str 
     address_type:str
 
-class UserDetails(BaseModel):
+class MtrAddressRequest(BaseModel):
+    address_latitude:float
+    address_longitude:float 
+    address_street:str 
+    address_type:str
+
+class MtrCitySchema(BaseModel):
+    is_active:bool
+    city_id:int
+    city_name:str
+    city_phone:str
+
+class MtrCityRequest(BaseModel):
+    city_name:str
+    city_phone:str
+
+class MtrProvince(BaseModel):
+    is_active:bool
+    province_id:int
+    province_code:str
+    province_name:str
+
+class MtrProvinceRequest(BaseModel):
+    province_code:str
+    province_name:str
+
+class MtrVillage(BaseModel):
+    is_active:bool
+    village_id:int
+    village_code:str
+    village_zip_code:int
+    village_name:str
+
+class MtrVillageRequest(BaseModel):
+    village_code:str
+    village_zip_code:int
+    village_name:str
+
+class MtrDistrict(BaseModel):
+    is_active:bool
+    district_id:int
+    district_code:str
+    district_name:str
+
+class MtrDistrictRequest(BaseModel):
+    district_code:str
+    district_name:str
+
+class UserDetailsSchema(BaseModel):
     is_active:bool
     user_employee_id:int
     user_id:int
@@ -42,55 +90,41 @@ class UserDetails(BaseModel):
     factor_x:float 
     skill_level_id:int
 
-class UnitInvoice(BaseModel):
-    invoice_system_numbe:int
+class UserDetailsRequest(BaseModel):
+    user_id:int
+    employee_name:str
+    employee_nickname:str
+    id_type:str
+    id_no:str
+    company_id:int
+    job_title_id:int
+    job_position_id:int
+    divison_id:int
+    cost_center_id:int
+    profit_center_id:int
+    user_bank_account_id:int
+    address_id:int
+    office_phone_no:str
+    home_phone_no:str
+    mobile_phone:str
+    email_address:str
+    start_date:datetime
+    termination_date:datetime
+    gender:str
+    date_of_birth:datetime
+    city_of_birth:str
+    marital_status:str
+    no_of_children:int
+    citizenship:str
+    last_education:str
+    last_employment:str
+    factor_x:float 
+    skill_level_id:int
+
+class UnitInvoiceSchema(BaseModel):
+    invoice_system_number:int
     company_id:int
     approval_status_id:int
-    invoice_document_number:int
-    account_receivable_invoice_type_id:int
-    invoice_date:datetime
-    invoice_due_date:datetime
-    remark:str
-    brand_id:int
-    profit_center_id:int
-    transaction_type_id:int
-    event_id:int
-    event_id:int
-    workorder_transaction_type_id:int
-    customer_type_id:int
-    customer_id:int
-    fund_type_id:int
-    sales_representative_id:int
-    currency_id:int
-    currency_exchange_rate_type:str
-    currency_exchange_rate_date:datetime
-    currency_exchange_rate:float
-    tax_exchange_rate_type:str
-    tax_exchange_rate_date:datetime
-    tax_exchange_rate:float
-    leasing_supplier_code:str
-    purchase_order_system_number:str
-    purchase_order_document_number:str
-    reference_type:str
-    reference_system_number:int
-    reference_document_number:str
-    reference_tnkb:str
-    reference_insurance_policy_number:str
-    reference_service_advisor:str
-    reference_contract_service_code:str
-    reference_document_date:datetime
-    reference_invoice_due_date:datetime
-    reference_total:float
-    reference_total_base_amount:float
-    reference_second_type:str
-    reference_second_system_number:int
-    reference_second_document_number:str
-    billable_to_id:int
-    bill_to_customer_type:str
-    bill_to_customer_code:str
-    bill_to_title_prefix:str
-    bill_to_name:str
-    bill_to_title_suffix:str
     bill_to_id_type:str
     bill_to_id_number:str
     bill_to_address_1:str # nama gedung
@@ -99,35 +133,15 @@ class UnitInvoice(BaseModel):
     district_id:int
     city_id:int
     province_id:int
-    city_id:int
-    village_id:int
-    bill_to_phone_number:str
-    bill_to_fax:str
-    bill_to_tax_registration_number:str
-    bill_to_registration_date:str
-    top_id:int
-    pay_type:str
-    reference_id:int
-    vat_percent:float
-    vat_tax_type:str
-    vat_service_code:str
-    pkp_type:str
-    pkp_number:str
-    pkp_date:datetime 
-    tax_name:str
-    tax_address_1:str
-    tax_address_2:str
+
+class UnitInvoiceRequest(BaseModel):
+    company_id:int
+    approval_status_id:int
+    bill_to_id_type:str
+    bill_to_id_number:str
+    bill_to_address_1:str # nama gedung
+    bill_to_address_2:str # nama jalan
     village_id:int
     district_id:int
     city_id:int
-    province_id:int 
-    city_id:int
-    village_id:int
-    tax_invoice_system_number:int
-    tax_invoice_document_number:str
-    tax_invoice_date:datetime
-    tax_invoice_id:int
-    reference_tax_invoice_system_number:int
-    reference_tax_invoice_document_number:str
-    reference_tax_invoice_date:datetime
-    invoice_payable_system_no:int
+    province_id:int
