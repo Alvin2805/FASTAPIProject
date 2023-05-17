@@ -120,8 +120,7 @@ async def post_invoice(req_data:UnitInvoiceRequest,db:Session=Depends(get_db)):
         new_data = MtrAddress()
         new_data.address_street = inp_data.bill_to_address_1
         new_data.address_type = inp_data.bill_to_address_2
-        updated_id = post_address(new_data,db)
-        update_user_address(inp_data.company_id,updated_id,db)
+        post_address(new_data,db)
 
     db.add(inp_data)
     db.commit()
@@ -198,7 +197,7 @@ def post_address(req_data:MtrAddressRequest,db:Session):
     db.add(inp_data)
     db.commit()
     db.refresh(inp_data)
-    return inp_data.address_id
+    #return inp_data.address_id
 
 def update_user_address(id:int,new_data:int,db:Session):
     get_user = get_users_by_id(id,db)
